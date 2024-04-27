@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>ID product</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Name product</td>
+                <td class="input"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Quantities</td>
+                <td class="input"><input type="number" id="soluong"></td>
+            </tr>
+            <tr>
+                <td>Cost</td>
+                <td class="input"><input type="text" id="tien"></td>
+            </tr>
+                <td></td>
+                <td class="input"><input type="button" value="Add more product" onclick="tongtien()"></td>
+            </tr>
+        </table>
+
+        <h4 id="slsp">Total product: 0</h4>
+        <h4 id="tong">Total price: 0</h4>
+
+
+        <script type = "text/javascript">
+            var count = 0;
+            function tongtien(){
+                var slsp = document.getElementById('soluong').value;
+                var gia = document.getElementById('tien').value;
+                var tong;
+                    if(sessionStorage.tong){
+                        if(count == 0){
+                            sessionStorage.tong = (parseFloat(slsp) * parseFloat(gia));
+                            sessionStorage.sl = parseFloat(slsp) 
+                            count++;
+                        } else{
+                            sessionStorage.tong = Number(sessionStorage.tong) + (parseFloat(slsp) * parseFloat(gia));
+                            sessionStorage.sl = parseFloat(slsp) + Number(sessionStorage.sl)
+                        }
+                        document.getElementById('slsp').innerHTML = 'Total product: ' + sessionStorage.sl
+                        document.getElementById('tong').innerHTML = 'Total price: ' + sessionStorage.tong
+                    } else {
+                        sessionStorage.tong=0
+                        document.getElementById('tong').innerText = 'Total price: ' + sessionStorage.tong
+                    }
+            }
+            </script>
+    </body>
+</html>
